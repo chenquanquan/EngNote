@@ -3,6 +3,7 @@
 #include "settingdialog.h"
 #include "addworddialog.h"
 #include "settingvalue.h"
+#include "dictionaryparse.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -18,10 +19,23 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_inputEdit_textChanged(const QString &arg1)
 {
+   QString dictPathStr;
+   QList<QString> dictList;
    QString valueStr = arg1; //ui->inputEdit->text();
    QString outputStr = valueStr;
 
-   ui->noteEdit->setText(outputStr);
+   settingReadDictPath(&dictPathStr);
+   if (dictPathStr.isEmpty() == 0) {
+       dictReadXml(&dictPathStr);
+       dictSearchWord(&valueStr, &dictList);
+
+       /* Display all result in ui */
+       QListIterator<QString> i(dictList);
+       ui->noteEdit->clear();
+       for (;i.hasNext();) {
+           ui->noteEdit->append(i.next());
+       }
+   }
 }
 
 void MainWindow::on_settingButton_clicked()

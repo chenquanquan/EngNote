@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -16,12 +16,14 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     settingvalue.cpp \
     settingdialog.cpp \
-    addworddialog.cpp
+    addworddialog.cpp \
+    dictionaryparse.cpp
 
 HEADERS  += mainwindow.h \
     settingvalue.h \
     settingdialog.h \
-    addworddialog.h
+    addworddialog.h \
+    dictionaryparse.h
 
 FORMS    += mainwindow.ui \
     settingdialog.ui \
