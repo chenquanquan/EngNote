@@ -1,3 +1,6 @@
+/* Setting window
+ *
+ */
 #include "settingdialog.h"
 #include "ui_settingdialog.h"
 #include "settingvalue.h"
@@ -20,6 +23,9 @@ settingDialog::~settingDialog()
     delete ui;
 }
 
+/* Save all setting item
+ *
+ */
 void settingDialog::on_yesButton_clicked()
 {
     QString dictPathStr = ui->dictLine->text();

@@ -1,3 +1,6 @@
+/* Add new word with associate chinese in note.
+ *
+ */
 #include "addworddialog.h"
 #include "ui_addworddialog.h"
 

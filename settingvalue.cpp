@@ -1,3 +1,6 @@
+/* Read/Write setting item.
+ *
+ */
 #include "settingvalue.h"
 
 QString dictPathStr = "";
