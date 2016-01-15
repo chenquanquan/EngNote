@@ -1,0 +1,19 @@
+#include "addworddialog.h"
+#include "ui_addworddialog.h"
+
+addWordDialog::addWordDialog(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::addWordDialog)
+{
+    ui->setupUi(this);
+}
+
+addWordDialog::~addWordDialog()
+{
+    delete ui;
+}
+
+void addWordDialog::on_buttonBox_accepted()
+{
+
+}
