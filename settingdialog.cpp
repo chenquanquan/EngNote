@@ -4,6 +4,7 @@
 #include "settingdialog.h"
 #include "ui_settingdialog.h"
 #include "settingvalue.h"
+#include "dictionaryparse.h"
 
 settingDialog::settingDialog(QWidget *parent) :
     QDialog(parent),
@@ -29,7 +30,12 @@ settingDialog::~settingDialog()
 void settingDialog::on_yesButton_clicked()
 {
     QString dictPathStr = ui->dictLine->text();
+    /* Write dictionary path as a setting value */
     settingWriteDictPath(&dictPathStr);
+    /* check the dictionary path and read the file(XML) */
+    if (dictPathStr.isEmpty() == 0) {
+        dictReadXml(&dictPathStr);
+    }
 
     settingDialog::close();
 }

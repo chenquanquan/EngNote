@@ -24,9 +24,9 @@ void MainWindow::on_inputEdit_textChanged(const QString &arg1)
    QString valueStr = arg1; //ui->inputEdit->text();
    QString outputStr = valueStr;
 
-   settingReadDictPath(&dictPathStr);
-   if (dictPathStr.isEmpty() == 0) {
-       dictReadXml(&dictPathStr);
+   //settingReadDictPath(&dictPathStr);
+   //if (dictPathStr.isEmpty() == 0) {
+       //dictReadXml(&dictPathStr);
        dictSearchWord(&valueStr, &dictList);
 
        /* Display all result in ui */
@@ -35,7 +35,7 @@ void MainWindow::on_inputEdit_textChanged(const QString &arg1)
        for (;i.hasNext();) {
            ui->noteEdit->append(i.next());
        }
-   }
+   //}
 }
 
 void MainWindow::on_settingButton_clicked()

@@ -12,27 +12,45 @@ int dictReadXml(QString* dictpath)
     if (dictFile->open(QIODevice::ReadOnly) == 0)
         return -1;
 
-    dictReader.setDevice(dictFile);
-
     return 0;
 }
 
 int dictSearchWord(QString* word, QList<QString>* list)
 {
-//    dictReader.readNext();
+    if (dictFile == NULL)
+        return -1;
+
+    if (!dictFile->isOpen())
+        return -1;
+
+    if (word->length() == 0)
+        return -1;
+
+    /* Restart file pointer */
+    dictFile->seek(0);
+    dictReader.setDevice(dictFile);
+
     while (!dictReader.atEnd()) {
         dictReader.readNext();
-        qDebug() << "dict reader search";
         if (dictReader.hasError()) {
             qDebug() <<"Error"<<dictReader.errorString();
         }
         if (dictReader.name() == "word") {
-            qDebug() << (dictReader.attributes().value("word").toString());
-            qDebug() << (dictReader.attributes().value("href").toString());
-            (*list) << (dictReader.attributes().value("href").toString());
+            QString wordItem = (dictReader.attributes().value("english").toString());
+            QString chineseItem = (dictReader.attributes().value("chinese").toString());
+            QString pattern = ".*" + *word + ".*";  /* Match condition */
+            QRegExp rx(pattern);
+
+
+            /* Remove all empty item */
+            if (wordItem.length() == 0 || chineseItem.length() == 0)
+                continue;
+
+            /* Reture all match item */
+            if (rx.exactMatch(wordItem) || rx.exactMatch(chineseItem)) {
+                (*list) << wordItem + " - " + chineseItem;
+            }
         }
-        //(*list) << ((dictReader.name().toString()));
-        //dictReader.readNext();
     }
 
     return 0;
