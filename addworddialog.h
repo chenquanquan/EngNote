@@ -15,6 +15,9 @@ public:
     explicit addWordDialog(QWidget *parent = 0);
     ~addWordDialog();
 
+private slots:
+    void on_buttonBox_accepted();
+
 private:
     Ui::addWordDialog *ui;
 };

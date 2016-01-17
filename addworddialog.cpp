@@ -16,3 +16,8 @@ addWordDialog::~addWordDialog()
     delete ui;
 }
 
+
+void addWordDialog::on_buttonBox_accepted()
+{
+
+}
